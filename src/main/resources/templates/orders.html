@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Список заказов</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+</head>
+<body th:fragment="content">
+	<h1 class="text-center">Bookshop</h1>
+	<div class="d-flex flex-wrap justify-content-around text-success">
+		<div class="shadow card w-25 m-3 justify-content-between "
+			th:each="order : ${orders}">
+			<div class="input-group mb-3">
+			<div class="card-footer">
+				<span class="input-group-text">Заказчик</span></div></div>
+				<div class="input-group mb-3">
+				<div class="card-header" th:text="${order.firstName}"></div>
+				<div class="card-footer" th:text="${order.lastName}"></div>
+			</div>
+			<div class="input-group mb-3">
+			<div class="card-footer">
+				<span class="input-group-text">Название и количество книг</span></div></div>
+			<div class="input-group mb-3">
+				<div class="card-footer" th:text="${order.bookName}"></div>
+				<div class="card-footer" th:text="${order.bookCount}"></div>
+			</div>
+			<div class="input-group mb-3">
+			<div class="card-footer">
+				<span class="input-group-text">Адрес</span></div></div>
+				<div class="input-group mb-3">
+				<div class="card-footer" th:text="${order.country}"></div>
+				<div class="card-footer" th:text="${order.city}"></div>
+				<div class="card-footer" th:text="${order.address}"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

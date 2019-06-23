@@ -16,6 +16,7 @@ import javax.persistence.Table;
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	private String name;
 	@Column(length=10485760)

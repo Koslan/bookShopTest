@@ -2,6 +2,7 @@ package com.example.bookshop.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +16,14 @@ import javax.persistence.Table;
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String address;
 	private String city;
 	private String country;
+	private String bookName;
 	private Integer bookCount;
 	@OneToOne
 	private User user;
@@ -98,6 +101,14 @@ public class Order {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 }

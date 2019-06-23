@@ -33,8 +33,6 @@ public class MainController {
 	@Autowired
 	private AuthorRepository authorRepository;
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
 	private OrderRepository orderRepository;
 
 	@GetMapping("/")
@@ -44,64 +42,6 @@ public class MainController {
 		model.addAttribute("genres", genreRepository.findAll());
 		model.addAttribute("contentPage", "books");
 		return "index";
-	}
-
-	@GetMapping("/books/bookDetails/{id}")
-	private String showBook(@PathVariable("id") Integer id, Model model) {
-		Book book = bookRepository.getOne(id);
-		model.addAttribute("book", book);
-		model.addAttribute("contentPage", "bookDetails");
-		return "index";
-	}
-
-	/**
-	 * 
-	 * @param book
-	 * @return Добавляет книгу в корзину пользователя
-	 */
-	@PostMapping("/books/bookDetails/{id}")
-	public String addBookToBasket(@ModelAttribute("book") Book book, @ModelAttribute("order") Order order) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userRepository.findById(auth.getName()).orElse(new User());
-		order.setUser(user);
-		orderRepository.save(order);
-		return "redirect:/";
-	}
-
-	@GetMapping("/books/editBook/{id}")
-	private String editBook(@PathVariable("id") Integer id, Model model) {
-
-		model.addAttribute("book", bookRepository.getOne(id));
-		model.addAttribute("genres", genreRepository.findAll());
-		model.addAttribute("authors", authorRepository.findAll());
-		model.addAttribute("genreChecked", bookRepository.getOne(id).getGenres());
-		model.addAttribute("authorsChecked", bookRepository.getOne(id).getAuthors());
-
-		model.addAttribute("book", bookRepository.getOne(id));
-		model.addAttribute("contentPage", "editBook");
-		return "index";
-
-	}
-
-	@PostMapping("/books/editBook")
-	private String editBookSubmit(@ModelAttribute("book") Book book) {
-		bookRepository.saveAndFlush(book);
-		return "redirect:/";
-	}
-
-	@GetMapping("/books/addBook")
-	private String addBook(Model model) {
-		model.addAttribute("genres", genreRepository.findAll());
-		model.addAttribute("authors", authorRepository.findAll());
-		model.addAttribute("contentPage", "addBook");
-		return "index";
-
-	}
-
-	@PostMapping("/books/addBook")
-	private String addBookSubmit(@ModelAttribute("book") Book book) {
-		bookRepository.save(book);
-		return "redirect:/";
 	}
 
 	/**
@@ -198,5 +138,13 @@ public class MainController {
 		} else {
 			return "redirect:/genres/add";
 		}
+	}
+	
+	@GetMapping("/orders")
+	private String getOrders(Model model) {
+		model.addAttribute("books", bookRepository.findAll());
+		model.addAttribute("orders", orderRepository.findAll());
+		model.addAttribute("contentPage", "orders");
+		return "index";
 	}
 }
