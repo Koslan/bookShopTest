@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Authors</title>
+</head>
+<body>
+	<div class="container" th:fragment="content">
+		<div class="row">
+			<div class="col-lg alert alert-dark" th:each="book : ${books}">
+				<div>
+					<a class="text-success"
+						th:href="@{'/books/bookDetails/'+${book.id}}"><div
+							th:text="${book.name}"></div></a>
+				</div>
+				<div class="text-success" th:text="${book.price}"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

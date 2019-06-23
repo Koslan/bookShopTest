@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Добавить книгу</title>
+</head>
+<div class="container" th:fragment="content">
+	<h1 class="text-center">Добавить книгу</h1>
+	<form class="mt-3" th:action="@{/books/addBook}" th:object="${book}"
+		method="post">
+		<div class="form-group">
+			<label for="name">Название книги</label> <input type="text"
+				class="form-control" id="name" name="name">
+		</div>
+		
+		<div class="form-group">
+			<label for="name">Описание книги</label> <input type="text"
+				class="form-control" id="description" name="description">
+		</div>
+		
+		 <div class="form-group ">
+			<label for="цена">Цена книги</label> <input type="text" 
+				class="form-control" id="price" name="price"> 
+		</div>
+
+
+	
+		<div class="form-group">
+			<label for="authors">Автор(ы) книги</label> <select
+				class="form-control selectpicker" multiple data-live-search="true"
+				id="authors" name="authors">
+				<option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}"/>
+			</select>
+		</div>
+		<a href="/authors/add" class="form-group  btn btn-success">Добавить
+			нового автора</a>
+		<div class="form-group">
+			<label for="genres">Жанр(ы) книги</label> <select
+				class="form-control selectpicker" multiple data-live-search="true"
+				id="genres" name="genres">
+				<option th:each="genre : ${genres}" th:value="${genre.id}"  th:text="${genre.name}"/>
+			</select>
+			<a href="/genres/add" class="form-group btn btn-success">Добавить
+			новый жанр</a>
+		</div>
+		
+
+		<button type="submit" class="form-group btn btn-outline-success btn-block">Сохранить
+			книгу</button>
+
+		<script type="text/javascript">
+			$('.selectpicker').selectpicker();
+		</script>
+	</form>
+</div>
+</body>
+</html>

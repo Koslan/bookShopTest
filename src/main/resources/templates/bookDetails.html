@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+
+<title>Инфо</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+</head>
+<body th:fragment="content">
+	<h1 class="text-center">Информация о книге</h1>
+
+
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Название</span>
+		</div>
+		<input type="text" class="form-control" th:field="*{book.name}"
+			readonly>
+	</div>
+	<div class="input-group mb-3">
+
+
+
+		<div class="input-group-prepend">
+			<span class="input-group-text">Описание</span>
+		</div>
+		<textarea class="form-control" id="exampleFormControlTextarea1"
+			rows="3" th:field="*{book.description}" readonly></textarea>
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Цена</span>
+		</div>
+		<input type="text" class="form-control" th:field="*{book.price}"
+			readonly>
+	</div>
+
+	<div class="input-group mb-3">
+		<span class="input-group-text">Авторы</span>
+		<div>
+			<div th:each="author : ${book.authors}">
+				<input type="text" class="form-control" th:value="${author.name}"
+					readonly>
+			</div>
+		</div>
+	</div>
+	<div class="input-group mb-3">
+		<span class="input-group-text">Жанры</span>
+		<div>
+			<div th:each="genre : ${book.genres}">
+				<input type="text" path="genres" class="form-control"
+					th:value="${genre.name}" readonly>
+			</div>
+		</div>
+
+	</div>
+
+	<a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary mt-2"
+		href="/authors/add" role="button">Добавить автора</a>
+
+	<th:block sec:authorize="hasRole('admin')">
+		<a class="btn btn-outline-success"
+			th:href="@{'/books/editBook/' + ${book.id}}">Изменить</a>
+	</th:block>
+	<br>
+	<form th:action="@{/books/bookDetails}" method="post">
+		<h1 class="text-center">Форма заказа</h1>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="firstName">Имя получателя</label> <input type="text"
+					class="form-control" id="firstName" name="firstName"
+					placeholder="Константин">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label for="lastName">Фамилия получателя</label> <input type="text"
+					class="form-control" id="lastName" name="lastName"
+					placeholder="Буряк">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="address">Адрес</label> <input type="text"
+				class="form-control" id="address" name="address"
+				placeholder="ул. Кузнецова 1">
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="city">Город</label> <input type="text"
+					class="form-control" id="city" name="city" placeholder="Одесса">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="inputState">Страна</label> <select id="inputState"
+					class="form-control" name="country">
+					<option selected>Украина</option>
+					<option>Россия</option>
+					<option>Белорусь</option>
+					<option>Казахстан</option>
+					<option>Польша</option>
+					<option>Литва</option>
+					<option>Латвия</option>
+					<option>Эстония</option>
+					<option>Молдавия</option>
+					<option>Болгария</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="bookCount">Количество книг</label> <input type="number"
+				name="bookCount" id="bookCount" min="1" value="1">
+		</div>
+		<button type="submit" class="btn btn-outline-success btn-sm btn-block">Оформить
+			заказ</button>
+	</form>
+
+</body>
+</html>
