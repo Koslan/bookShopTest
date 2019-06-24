@@ -139,10 +139,9 @@ public class MainController {
 			return "redirect:/genres/add";
 		}
 	}
-	
+
 	@GetMapping("/orders")
 	private String getOrders(Model model) {
-		model.addAttribute("books", bookRepository.findAll());
 		model.addAttribute("orders", orderRepository.findAll());
 		model.addAttribute("contentPage", "orders");
 		return "index";

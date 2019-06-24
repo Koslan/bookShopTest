@@ -18,26 +18,26 @@
 		<div class="shadow card w-25 m-3 justify-content-between "
 			th:each="order : ${orders}">
 			<div class="input-group mb-3">
-			<div class="card-footer">
-				<span class="input-group-text">Заказчик</span></div></div>
-				<div class="input-group mb-3">
-				<div class="card-header" th:text="${order.firstName}"></div>
-				<div class="card-footer" th:text="${order.lastName}"></div>
-			</div>
-			<div class="input-group mb-3">
-			<div class="card-footer">
-				<span class="input-group-text">Название и количество книг</span></div></div>
-			<div class="input-group mb-3">
-				<div class="card-footer" th:text="${order.bookName}"></div>
-				<div class="card-footer" th:text="${order.bookCount}"></div>
-			</div>
-			<div class="input-group mb-3">
-			<div class="card-footer">
-				<span class="input-group-text">Адрес</span></div></div>
-				<div class="input-group mb-3">
-				<div class="card-footer" th:text="${order.country}"></div>
-				<div class="card-footer" th:text="${order.city}"></div>
-				<div class="card-footer" th:text="${order.address}"></div>
+				<ul class="list-unstyled">
+					<li><p class="card-text">
+							Заказчик: <span class="h5" th:text="${order.firstName}"> </span>
+							<span class="h5" th:text="${order.lastName}"></span>
+						</p>
+					<li><p class="card-text">
+							Название книги: <span class="h5" th:text="${order.bookName}">
+							</span>
+						</p>
+					<li>
+						<p class="card-text">
+							Количество книг: <span class="h5" th:text="${order.bookCount}">
+							</span>
+						</p>
+					<li><p class="card-text">
+							Адрес: <span class="h5" th:text="${order.country}"> </span> <span
+								class="h5" th:text="${order.city}"> </span> <span class="h5"
+								th:text="${order.address}"> </span>
+						</p>
+				</ul>
 			</div>
 		</div>
 	</div>
