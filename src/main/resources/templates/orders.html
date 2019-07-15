@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Список заказов</title>
+<title>Orders list</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -20,20 +20,19 @@
 			<div class="input-group mb-3">
 				<ul class="list-unstyled">
 					<li><p class="card-text">
-							Заказчик: <span class="h5" th:text="${order.firstName}"> </span>
+							Customer: <span class="h5" th:text="${order.firstName}"> </span>
 							<span class="h5" th:text="${order.lastName}"></span>
 						</p>
 					<li><p class="card-text">
-							Название книги: <span class="h5" th:text="${order.bookName}">
-							</span>
+							Book name: <span class="h5" th:text="${order.bookName}"> </span>
 						</p>
 					<li>
 						<p class="card-text">
-							Количество книг: <span class="h5" th:text="${order.bookCount}">
+							Number of books: <span class="h5" th:text="${order.bookCount}">
 							</span>
 						</p>
 					<li><p class="card-text">
-							Адрес: <span class="h5" th:text="${order.country}"> </span> <span
+							Address: <span class="h5" th:text="${order.country}"> </span> <span
 								class="h5" th:text="${order.city}"> </span> <span class="h5"
 								th:text="${order.address}"> </span>
 						</p>

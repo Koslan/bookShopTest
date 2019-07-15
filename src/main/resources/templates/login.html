@@ -25,17 +25,17 @@
 	class="container d-flex justify-content-center h-100 align-items-center">
 	<div class="card" style="max-height: 500px; width: 400px">
 		<div class="card-header">
-			<h2>Авторизация</h2>
-			<div class="alert alert-danger" th:if="${param.error}">Неверное
-				имя пользователя или пароль</div>
-			<div class="alert alert-danger" th:if="${param.logout}">Вы
-				вышли из системы</div>
+			<h2>Authorization</h2>
+			<div class="alert alert-danger" th:if="${param.error}">Wrong
+				login or pass</div>
+			<div class="alert alert-danger" th:if="${param.logout}">You
+				logg out</div>
 		</div>
 		<form th:action="@{/login}" method="post" class="card-body">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 			<div class="form-group">
-				<label for="name">Имя пользователя</label> <input type="text"
+				<label for="name">Login</label> <input type="text"
 					class="form-control" id="name" name="username">
 			</div>
 			<div class="form-group">
@@ -45,8 +45,8 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 		<div class="card-footer">
-			<a href="/" role="button">Войти как гость</a> <br> <a
-				href="/registration" role="button">Зарегистрироваться</a>
+			<a href="/" role="button">Enter as a guest</a> <br> <a
+				href="/registration" role="button">Registration</a>
 		</div>
 	</div>
 </body>

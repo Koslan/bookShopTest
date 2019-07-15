@@ -29,12 +29,13 @@
 		th:fragment="header(search)">
 		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 			<li class="nav-item"><a
-				class="nav-link btn btn-outline-success mr-3" href="/">Главная</a></li>
+				class="nav-link btn btn-outline-success mr-3" href="/">General</a></li>
 			<li class="nav-item" sec:authorize="hasRole('admin')"><a
-				class="nav-link btn btn-outline-success mr-3" href="/books/addBook">Добавить
-					книгу</a></li>
+				class="nav-link btn btn-outline-success mr-3" href="/books/addBook">Add
+					books</a></li>
 			<li class="nav-item" sec:authorize="hasRole('admin')"><a
-				class="nav-link btn btn-outline-success mr-3" href="/orders">Список заказов</a></li>
+				class="nav-link btn btn-outline-success mr-3" href="/orders">Orders
+					list</a></li>
 		</ul>
 		<th:block sec:authorize="isAuthenticated()">
 			<form th:action="@{/logout}" method="post">
