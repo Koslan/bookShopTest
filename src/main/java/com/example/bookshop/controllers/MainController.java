@@ -45,7 +45,7 @@ public class MainController {
 	}
 
 	/**
-	 * Возвращает страницу со всеми книгами по жанру
+	 * returns books only chosen genre
 	 * 
 	 * @param id
 	 * @param model
@@ -70,7 +70,7 @@ public class MainController {
 	}
 
 	/**
-	 * Возвращает страницу со всеми книгами автора
+	 * returns books only chosen author
 	 * 
 	 * @param id
 	 * @param model
